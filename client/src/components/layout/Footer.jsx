@@ -135,7 +135,7 @@ function Footer() {
         {/* Bottom */}
         <div className="mt-16 flex flex-col items-center justify-between gap-6 border-t border-slate-800 pt-8 md:flex-row">
           <p className="text-center text-slate-500">
-            © 2026 <span className="inline-block align-middle"><Logo className="inline h-4" /></span>. All Rights Reserved.
+            © 2026 <span className="inline-block align-middle">Snaplifye</span>. All Rights Reserved.
           </p>
           <div className="flex gap-6 text-slate-500">
             <a href="#" className="transition hover:text-cyan-400">
