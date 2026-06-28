@@ -1,18 +1,32 @@
 import axios from "axios";
 
+const normalizeBaseURL = (value) => {
+  if (!value) return null;
+
+  const trimmed = value.trim().replace(/\/$/, "");
+
+  if (!trimmed) return null;
+
+  if (trimmed.endsWith("/api")) return trimmed;
+  if (trimmed === "/") return "/api";
+  if (trimmed.startsWith("/")) return `${trimmed}/api`;
+
+  return `${trimmed}/api`;
+};
+
 const getApiBaseURL = () => {
-  const configuredURL = import.meta.env.VITE_API_URL?.trim();
+  const configuredURL = normalizeBaseURL(import.meta.env.VITE_API_URL);
 
   if (import.meta.env.PROD) {
-    if (!configuredURL || configuredURL.includes("localhost") || configuredURL.includes("127.0.0.1")) {
-      return "/api";
+    if (configuredURL) {
+      return configuredURL;
     }
 
-    return configuredURL.replace(/\/$/, "");
+    return "/api";
   }
 
   if (configuredURL) {
-    return configuredURL.replace(/\/$/, "");
+    return configuredURL;
   }
 
   return "http://localhost:5000/api";
