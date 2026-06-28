@@ -17,7 +17,7 @@ function HeroContent() {
       </div>
 
       {/* Heading */}
-      <h1 className="mt-8 text-5xl font-extrabold leading-tight lg:text-7xl">
+      <h1 className="mt-8 text-3xl font-extrabold leading-tight sm:text-4xl md:text-5xl lg:text-7xl">
         Build
         <span className="block bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-500 bg-clip-text text-transparent">
           Premium Websites
@@ -28,7 +28,7 @@ function HeroContent() {
       </h1>
 
       {/* Description */}
-      <p className="mt-8 max-w-xl text-lg leading-8 text-slate-400">
+      <p className="mt-8 max-w-xl text-base sm:text-lg leading-7 sm:leading-8 text-slate-400">
         We build fast, modern and conversion-focused websites for startups,
         businesses and personal brands using the MERN stack.
       </p>

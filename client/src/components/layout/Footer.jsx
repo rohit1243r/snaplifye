@@ -12,11 +12,11 @@ import { Link } from "react-router-dom";
 function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-slate-800 bg-slate-950">
-      {/* Background Glow */}
-      <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-cyan-500/10 blur-[120px]" />
-      <div className="absolute right-0 bottom-0 h-72 w-72 rounded-full bg-blue-500/10 blur-[120px]" />
+      {/* Background Glow (hide on small screens) */}
+      <div className="hidden md:block absolute left-0 top-0 h-72 w-72 rounded-full bg-cyan-500/10 blur-[120px]" />
+      <div className="hidden md:block absolute right-0 bottom-0 h-72 w-72 rounded-full bg-blue-500/10 blur-[120px]" />
 
-      <div className="relative mx-auto max-w-7xl px-6 py-20">
+      <div className="relative mx-auto max-w-7xl px-6 py-12 md:py-20">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Company */}
           <div>

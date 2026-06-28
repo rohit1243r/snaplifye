@@ -10,8 +10,8 @@ function HeroImage() {
       transition={{ duration: 0.8 }}
       className="relative flex justify-center"
     >
-      {/* Background Glow */}
-      <div className="absolute h-96 w-96 rounded-full bg-cyan-500/20 blur-[140px]" />
+        {/* Background Glow (hide on small screens) */}
+        <div className="hidden md:block absolute md:h-72 md:w-72 lg:h-96 lg:w-96 rounded-full bg-cyan-500/20 blur-[140px]" />
 
       {/* Browser Card */}
       <div className="relative w-full max-w-xl overflow-hidden rounded-3xl border border-slate-700 bg-slate-900/90 shadow-[0_20px_80px_rgba(6,182,212,0.15)] backdrop-blur-xl">
@@ -32,7 +32,7 @@ function HeroImage() {
           <img
             src="/images/hero-preview.png"
             alt="Snaplifye Website Preview"
-            className="h-[340px] w-full rounded-2xl object-cover object-top transition duration-500 hover:scale-[1.02]"
+            className="h-48 w-full rounded-2xl object-cover object-top transition duration-500 hover:scale-[1.02] sm:h-64 md:h-[340px]"
           />
 
           {/* Stats */}

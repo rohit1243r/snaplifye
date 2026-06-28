@@ -12,12 +12,12 @@ import { Textarea } from "@/components/ui/textarea";
 
 function Contact() {
   return (
-    <section className="relative overflow-hidden bg-slate-950 py-24">
+    <section className="relative overflow-hidden bg-slate-950 py-16 sm:py-24">
 
       {/* Background Glow */}
-      <div className="absolute inset-0">
-        <div className="absolute left-20 top-20 h-72 w-72 rounded-full bg-cyan-500/10 blur-[120px]" />
-        <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-blue-500/10 blur-[120px]" />
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute left-6 top-10 h-56 w-56 rounded-full bg-cyan-500/10 blur-[120px] sm:left-20 sm:top-20 sm:h-72 sm:w-72" />
+        <div className="absolute -right-4 -bottom-4 h-64 w-64 rounded-full bg-blue-500/10 blur-[120px] sm:bottom-0 sm:right-0 sm:h-96 sm:w-96" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6">
@@ -27,7 +27,7 @@ function Contact() {
           <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-5 py-2 text-sm font-semibold text-cyan-400">
             CONTACT SNAPLIFYE
           </span>
-          <h1 className="mt-8 text-5xl font-extrabold leading-tight text-white md:text-7xl">
+          <h1 className="mt-8 text-3xl font-extrabold leading-tight sm:text-4xl md:text-5xl lg:text-7xl text-white">
             Let's Build Your
             <span className="block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
               Dream Website
@@ -41,7 +41,7 @@ function Contact() {
         </div>
 
         {/* Contact Cards */}
-        <div className="mt-20 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <div className="group rounded-3xl border border-slate-800 bg-slate-900/70 p-8 backdrop-blur transition hover:-translate-y-2 hover:border-cyan-500">
             <Mail className="mb-5 text-cyan-400" size={34} />
             <h3 className="text-xl font-bold text-white">Email</h3>
@@ -72,12 +72,12 @@ function Contact() {
         </div>
 
         {/* Contact Form */}
-        <div className="mt-20 rounded-[30px] border border-slate-800 bg-slate-900/70 p-10 backdrop-blur-xl shadow-2xl">
+        <div className="mt-12 rounded-[30px] border border-slate-800 bg-slate-900/70 p-6 sm:p-10 backdrop-blur-xl shadow-2xl">
           <div className="mb-8">
             <span className="rounded-full bg-cyan-500/10 px-4 py-2 text-sm font-semibold text-cyan-400">
               FREE CONSULTATION
             </span>
-            <h2 className="mt-5 text-4xl font-bold text-white">
+            <h2 className="mt-5 text-2xl sm:text-4xl font-bold text-white">
               Tell Us About
               <span className="block text-cyan-400">
                 Your Project
@@ -89,8 +89,8 @@ function Contact() {
             </p>
           </div>
 
-          <form className="space-y-6">
-            <div className="grid gap-5 md:grid-cols-2">
+            <form className="space-y-6">
+            <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
               <Input
                 placeholder="Full Name"
                 className="h-12 rounded-xl border-slate-700 bg-slate-950"
@@ -102,7 +102,7 @@ function Contact() {
               />
             </div>
 
-            <div className="grid gap-5 md:grid-cols-2">
+            <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
               <Input
                 placeholder="Phone Number"
                 className="h-12 rounded-xl border-slate-700 bg-slate-950"
