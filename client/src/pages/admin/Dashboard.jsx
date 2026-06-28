@@ -7,6 +7,7 @@ import { exportToCSV } from "@/utils/exportCSV";
 import StatusChart from "@/components/dashboard/StatusChart";
 import MonthlyChart from "@/components/dashboard/MonthlyChart";
 import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
     Users,
@@ -15,9 +16,11 @@ import {
     Clock,
     Search,
     Download,
+    LogOut,
 } from "lucide-react";
 
 function Dashboard() {
+    const navigate = useNavigate();
     const [quotes, setQuotes] = useState([]);
     const [search, setSearch] = useState("");
     const [statusFilter, setStatusFilter] = useState("All");
@@ -28,6 +31,11 @@ function Dashboard() {
     const [currentPage, setCurrentPage] = useState(1);
 
     const leadsPerPage = 10;
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        navigate("/admin/login");
+    };
 
     const fetchQuotes = async () => {
         try {
@@ -73,14 +81,24 @@ function Dashboard() {
             <div className="p-8">
 
                 {/* Heading */}
-                <div className="mb-8">
-                    <h1 className="text-4xl font-bold text-white">
-                        Dashboard
-                    </h1>
+                <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                    <div>
+                        <h1 className="text-4xl font-bold text-white">
+                            Dashboard
+                        </h1>
 
-                    <p className="mt-2 text-slate-400">
-                        Welcome back 👋
-                    </p>
+                        <p className="mt-2 text-slate-400">
+                            Welcome back 👋
+                        </p>
+                    </div>
+
+                    <button
+                        onClick={handleLogout}
+                        className="flex items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-900 px-4 py-2 text-sm font-medium text-slate-200 transition hover:bg-slate-800"
+                    >
+                        <LogOut size={16} />
+                        Logout
+                    </button>
                 </div>
 
                 {/* Stats */}
