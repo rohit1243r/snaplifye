@@ -25,8 +25,7 @@ function Contact() {
         {/* Hero */}
         <div className="mx-auto max-w-4xl text-center">
           <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-5 py-2 text-sm font-semibold text-cyan-400">
-            CONTACT <img src="/images/logo.png" alt="Snaplifye" className="inline h-4" />
-          </span>
+            CONTACT SNAPLIFYE</span>
           <h1 className="mt-8 text-3xl font-extrabold leading-tight sm:text-4xl md:text-5xl lg:text-7xl text-white">
             Let's Build Your
             <span className="block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
