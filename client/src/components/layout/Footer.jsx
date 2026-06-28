@@ -118,11 +118,11 @@ function Footer() {
             <div className="mt-6 space-y-5">
               <div className="flex items-center gap-3 text-slate-400 transition hover:text-cyan-400">
                 <Mail size={18} className="text-cyan-400" />
-                snaplifye@gmail.com
+                snaplifyelimitedcompany@gmail.com
               </div>
               <div className="flex items-center gap-3 text-slate-400 transition hover:text-cyan-400">
                 <Phone size={18} className="text-cyan-400" />
-                +91 98765 43210
+                +91 86089 69421
               </div>
               <div className="flex items-center gap-3 text-slate-400 transition hover:text-cyan-400">
                 <MapPin size={18} className="text-cyan-400" />
