@@ -1,18 +1,21 @@
 import dotenv from "dotenv";
 import bcrypt from "bcryptjs";
-import mongoose from "mongoose";
 
 import connectDB from "../src/config/db.js";
 import Admin from "../src/models/admin.model.js";
 
 dotenv.config();
 
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "snaplifyelimitedcompany@gmail.com";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "Admin@123";
+const ADMIN_NAME = process.env.ADMIN_NAME || "Rohit Kumar";
+
 const createAdmin = async () => {
   try {
     await connectDB();
 
     const exists = await Admin.findOne({
-      email: "snaplifyelimitedcompany@gmail.com",
+      email: ADMIN_EMAIL,
     });
 
     if (exists) {
@@ -20,11 +23,11 @@ const createAdmin = async () => {
       process.exit();
     }
 
-    const hashedPassword = await bcrypt.hash("Admin@123", 10);
+    const hashedPassword = await bcrypt.hash(ADMIN_PASSWORD, 10);
 
     await Admin.create({
-      name: "Rohit Kumar",
-      email: "snaplifyelimitedcompany@gmail.com",
+      name: ADMIN_NAME,
+      email: ADMIN_EMAIL,
       password: hashedPassword,
     });
 
