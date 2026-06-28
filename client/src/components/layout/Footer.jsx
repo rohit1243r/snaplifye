@@ -8,6 +8,7 @@ import { TbWorld } from "react-icons/tb";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 import { Link } from "react-router-dom";
+import Logo from "./Logo";
 
 function Footer() {
   return (
@@ -20,7 +21,9 @@ function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Company */}
           <div>
-            <h2 className="text-3xl font-bold text-cyan-400">Snaplifye</h2>
+            <div className="flex items-center gap-3">
+              <Logo className="h-10" />
+            </div>
             <p className="mt-5 leading-7 text-slate-400">
               We build premium websites, landing pages and
               web applications that help businesses grow
@@ -132,7 +135,7 @@ function Footer() {
         {/* Bottom */}
         <div className="mt-16 flex flex-col items-center justify-between gap-6 border-t border-slate-800 pt-8 md:flex-row">
           <p className="text-center text-slate-500">
-            © 2026 Snaplifye. All Rights Reserved.
+            © 2026 <span className="inline-block align-middle"><Logo className="inline h-4" /></span>. All Rights Reserved.
           </p>
           <div className="flex gap-6 text-slate-500">
             <a href="#" className="transition hover:text-cyan-400">

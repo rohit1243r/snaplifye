@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import useQuoteDialog from "@/hooks/useQuoteDialog";
+import Logo from "./Logo";
 
 const navItems = [
     { name: "Home", path: "/" },
@@ -20,11 +21,8 @@ function Navbar() {
             <div className="mx-auto flex h-16 md:h-20 max-w-7xl items-center justify-between px-4 sm:px-6">
 
                 {/* Logo */}
-                <NavLink
-                    to="/"
-                    className="text-3xl font-bold text-cyan-400"
-                >
-                    Snaplifye
+                <NavLink to="/" className="flex items-center">
+                    <Logo className="h-8 md:h-10" />
                 </NavLink>
 
                 {/* Desktop Menu */}
@@ -65,7 +63,7 @@ function Navbar() {
             {/* Mobile Menu */}
             {openMenu && (
                 <div className="md:hidden">
-                    <div className="absolute inset-x-0 top-[80px] z-40 bg-slate-950/95 border-t border-slate-800/50 backdrop-blur p-6">
+                    <div className="absolute inset-x-0 top-20 z-40 bg-slate-950/95 border-t border-slate-800/50 backdrop-blur p-6">
                         <nav className="flex flex-col gap-4">
                             {navItems.map((item) => (
                                 <NavLink

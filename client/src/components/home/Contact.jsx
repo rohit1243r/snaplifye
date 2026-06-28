@@ -25,7 +25,7 @@ function Contact() {
         {/* Hero */}
         <div className="mx-auto max-w-4xl text-center">
           <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-5 py-2 text-sm font-semibold text-cyan-400">
-            CONTACT SNAPLIFYE
+            CONTACT <img src="/images/logo.png" alt="Snaplifye" className="inline h-4" />
           </span>
           <h1 className="mt-8 text-3xl font-extrabold leading-tight sm:text-4xl md:text-5xl lg:text-7xl text-white">
             Let's Build Your
@@ -130,10 +130,10 @@ function Contact() {
         </div>
 
         {/* Why Choose Snaplifye */}
-        <div className="mt-24 rounded-[30px] border border-slate-800 bg-slate-900/60 p-12">
+          <div className="mt-24 rounded-[30px] border border-slate-800 bg-slate-900/60 p-12">
           <div className="text-center">
             <h2 className="text-4xl font-bold text-white">
-              Why Choose Snaplifye?
+              Why Choose <img src="/images/logo.png" alt="Snaplifye" className="inline h-6 align-middle" />?
             </h2>
             <p className="mt-4 text-slate-400">
               We build websites that help businesses grow faster.

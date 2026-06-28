@@ -7,6 +7,7 @@ import { loginSchema } from "@/schemas/loginSchema";
 import { loginAdmin } from "@/services/auth.service";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import Logo from "@/components/layout/Logo";
 function Login() {
   const navigate = useNavigate();
 
@@ -37,7 +38,7 @@ function Login() {
         <div className="w-full max-w-md rounded-3xl border border-slate-800 bg-slate-900 p-8">
           <h1 className="mb-2 text-3xl font-bold">Admin Login</h1>
 
-          <p className="mb-8 text-slate-400">Login to Snaplifye Dashboard</p>
+          <p className="mb-8 text-slate-400">Login to <Logo className="inline h-4 align-middle" /> Dashboard</p>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <Input
