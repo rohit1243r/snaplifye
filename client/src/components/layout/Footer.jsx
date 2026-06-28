@@ -22,7 +22,7 @@ function Footer() {
           {/* Company */}
           <div>
             <div className="flex items-center gap-3">
-              <Logo className="h-10" />
+              <span>Snaplifye</span>
             </div>
             <p className="mt-5 leading-7 text-slate-400">
               We build premium websites, landing pages and
