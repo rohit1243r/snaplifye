@@ -28,35 +28,35 @@ function Footer() {
             </p>
             <div className="mt-6 flex gap-3">
               <a
-                href="#"
+                href="https://snaplifye.netlify.app/"
                 className="rounded-xl bg-slate-800 p-3 text-slate-400 transition hover:bg-cyan-500 hover:text-white"
                 aria-label="Website"
               >
                 <TbWorld size={18} />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/snaplifye?igsh=dTVzZ3l2cGd4Znlt"
                 className="rounded-xl bg-slate-800 p-3 text-slate-400 transition hover:bg-[#E4405F] hover:text-white"
                 aria-label="Instagram"
               >
                 <FaInstagram size={18} />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/rohit-kumar-5a533839b?utm_source=share_via&utm_content=profile&utm_medium=member_android"
                 className="rounded-xl bg-slate-800 p-3 text-slate-400 transition hover:bg-[#0A66C2] hover:text-white"
                 aria-label="LinkedIn"
               >
                 <FaLinkedinIn size={18} />
               </a>
               <a
-                href="#"
+                href="https://sorts.pro/WxeOhv"
                 className="rounded-xl bg-slate-800 p-3 text-slate-400 transition hover:bg-[#333333] hover:text-white"
                 aria-label="GitHub"
               >
                 <FaGithub size={18} />
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/profile.php?id=61585237183009"
                 className="rounded-xl bg-slate-800 p-3 text-slate-400 transition hover:bg-[#1877F2] hover:text-white"
                 aria-label="Facebook"
               >
