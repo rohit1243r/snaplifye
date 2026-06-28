@@ -22,7 +22,7 @@ const getApiBaseURL = () => {
       return configuredURL;
     }
 
-    return "/api";
+    return "https://snaplifye.onrender.com/api";
   }
 
   if (configuredURL) {

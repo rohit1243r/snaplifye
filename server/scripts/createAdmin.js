@@ -14,12 +14,16 @@ const createAdmin = async () => {
   try {
     await connectDB();
 
-    const exists = await Admin.findOne({
+    const existingAdmin = await Admin.findOne({
       email: ADMIN_EMAIL,
     });
 
-    if (exists) {
-      console.log("✅ Admin already exists");
+    if (existingAdmin) {
+      existingAdmin.name = ADMIN_NAME;
+      existingAdmin.password = await bcrypt.hash(ADMIN_PASSWORD, 10);
+      await existingAdmin.save();
+
+      console.log("✅ Admin credentials updated successfully");
       process.exit();
     }
 
