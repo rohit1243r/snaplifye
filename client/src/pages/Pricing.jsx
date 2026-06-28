@@ -1,5 +1,7 @@
+import PricingSection from "@/components/home/Pricing";
+
 function Pricing() {
-  return <h1>Pricing Page</h1>;
+  return <PricingSection />;
 }
 
 export default Pricing;

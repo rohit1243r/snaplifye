@@ -1,5 +1,11 @@
-function Service() {
-  return <h1>Service Page</h1>;
+import ServicesSection from "@/components/home/Services";
+
+function Services() {
+  return (
+    <>
+      <ServicesSection />
+    </>
+  );
 }
 
-export default Service;
+export default Services;
