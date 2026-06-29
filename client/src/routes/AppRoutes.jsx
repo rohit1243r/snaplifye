@@ -15,7 +15,7 @@ import Dashboard from "@/pages/admin/Dashboard";
 import Projects from "@/pages/admin/Projects";
 
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
-
+import Contacts from "@/pages/admin/Contacts";
 function AppRoutes() {
   return (
     <BrowserRouter>
@@ -102,6 +102,24 @@ function AppRoutes() {
           }
         />
 
+        <Route
+          path="/admin/contacts"
+          element={
+            <ProtectedRoute>
+              <Contacts />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/contacts"
+          element={
+            <ProtectedRoute>
+              <Contacts />
+            </ProtectedRoute>
+          }
+        />
+
         {/* 404 */}
         <Route
           path="*"
@@ -111,6 +129,8 @@ function AppRoutes() {
             </Layout>
           }
         />
+
+
 
       </Routes>
     </BrowserRouter>

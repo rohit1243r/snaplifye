@@ -24,8 +24,34 @@ function Contact() {
   const onSubmit = async (data) => {
     try {
       await createContact(data);
+
       toast.success("Message sent successfully 🚀");
+
+      // WhatsApp Message
+      const phone = "919876543210"; // Apna WhatsApp Number
+
+      const message = encodeURIComponent(`
+Hello Snaplifye 👋
+
+Name: ${data.name}
+
+Email: ${data.email}
+
+Phone: ${data.phone}
+
+Subject: ${data.subject}
+
+Message:
+${data.message}
+`);
+
+      window.open(
+        `https://wa.me/${phone}?text=${message}`,
+        "_blank"
+      );
+
       reset();
+
     } catch (error) {
       toast.error(
         error.response?.data?.message ||

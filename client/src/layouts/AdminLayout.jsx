@@ -4,6 +4,7 @@ import {
   FolderKanban,
   LogOut,
 } from "lucide-react";
+import { Mail } from "lucide-react";
 
 function AdminLayout({ children }) {
   const location = useLocation();
@@ -19,6 +20,11 @@ function AdminLayout({ children }) {
       title: "Projects",
       path: "/admin/projects",
       icon: <FolderKanban size={20} />,
+    },
+    {
+      title: "Contacts",
+      path: "/admin/contacts",
+      icon: <Mail size={20} />,
     },
   ];
 
@@ -51,11 +57,10 @@ function AdminLayout({ children }) {
             <Link
               key={menu.path}
               to={menu.path}
-              className={`mb-2 flex items-center gap-3 rounded-xl px-4 py-3 transition ${
-                location.pathname === menu.path
-                  ? "bg-cyan-500 text-white"
-                  : "text-slate-300 hover:bg-slate-800"
-              }`}
+              className={`mb-2 flex items-center gap-3 rounded-xl px-4 py-3 transition ${location.pathname === menu.path
+                ? "bg-cyan-500 text-white"
+                : "text-slate-300 hover:bg-slate-800"
+                }`}
             >
               {menu.icon}
               {menu.title}
