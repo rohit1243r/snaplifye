@@ -92,13 +92,13 @@ ${data.message}
           <div className="group rounded-3xl border border-slate-800 bg-slate-900/70 p-8 backdrop-blur transition hover:-translate-y-2 hover:border-cyan-500">
             <Mail className="mb-5 text-cyan-400" size={34} />
             <h3 className="text-xl font-bold text-white">Email</h3>
-            <p className="mt-3 text-slate-400">snaplifye@gmail.com</p>
+            <p className="mt-3 text-slate-400">snaplifyelimitedcompany@gmail.com</p>
           </div>
 
           <div className="group rounded-3xl border border-slate-800 bg-slate-900/70 p-8 backdrop-blur transition hover:-translate-y-2 hover:border-cyan-500">
             <Phone className="mb-5 text-cyan-400" size={34} />
             <h3 className="text-xl font-bold text-white">Phone</h3>
-            <p className="mt-3 text-slate-400">+91 98765 43210</p>
+            <p className="mt-3 text-slate-400">+91 86089 69421</p>
           </div>
 
           <div className="group rounded-3xl border border-slate-800 bg-slate-900/70 p-8 backdrop-blur transition hover:-translate-y-2 hover:border-cyan-500">
