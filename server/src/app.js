@@ -1,13 +1,14 @@
 import express from "express";
 import cors from "cors";
-import quoteRoutes from "./routes/quote.routes.js";
+
 import authRoutes from "./routes/auth.routes.js";
+import quoteRoutes from "./routes/quote.routes.js";
+import projectRoutes from "./routes/project.routes.js";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use("/api/auth", authRoutes);
 
 app.get("/", (req, res) => {
   res.json({
@@ -16,6 +17,8 @@ app.get("/", (req, res) => {
   });
 });
 
+app.use("/api/auth", authRoutes);
 app.use("/api/quotes", quoteRoutes);
+app.use("/api/projects", projectRoutes);
 
 export default app;

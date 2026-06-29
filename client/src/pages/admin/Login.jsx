@@ -8,6 +8,7 @@ import { loginAdmin } from "@/services/auth.service";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import Logo from "@/components/layout/Logo";
+
 function Login() {
   const navigate = useNavigate();
 
@@ -33,42 +34,69 @@ function Login() {
     }
   };
   return (
-    <AdminLayout>
-      <div className="flex min-h-screen items-center justify-center px-6">
-        <div className="w-full max-w-md rounded-3xl border border-slate-800 bg-slate-900 p-8">
-          <h1 className="mb-2 text-3xl font-bold">Admin Login</h1>
+  <div className="flex min-h-screen items-center justify-center bg-slate-950 px-6">
 
-          <p className="mb-8 text-slate-400">Login to <Logo className="inline h-4 align-middle" /> Dashboard</p>
+    <div className="w-full max-w-md rounded-3xl border border-slate-800 bg-slate-900 p-8 shadow-2xl">
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-            <Input
-              type="email"
-              placeholder="Admin Email"
-              {...register("email")}
-            />
+      <div className="mb-8 text-center">
 
-            {errors.email && (
-              <p className="text-sm text-red-500">{errors.email.message}</p>
-            )}
-
-            <Input
-              type="password"
-              placeholder="Password"
-              {...register("password")}
-            />
-
-            {errors.password && (
-              <p className="text-sm text-red-500">{errors.password.message}</p>
-            )}
-
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? "Logging in..." : "Login"}
-            </Button>
-          </form>
+        <div className="flex justify-center">
+          <Logo />
         </div>
+
+        <h1 className="mt-6 text-3xl font-bold text-white">
+          Admin Login
+        </h1>
+
+        <p className="mt-2 text-slate-400">
+          Login to your Snaplifye Dashboard
+        </p>
+
       </div>
-    </AdminLayout>
-  );
+
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-5"
+      >
+
+        <Input
+          type="email"
+          placeholder="Admin Email"
+          {...register("email")}
+        />
+
+        {errors.email && (
+          <p className="text-sm text-red-500">
+            {errors.email.message}
+          </p>
+        )}
+
+        <Input
+          type="password"
+          placeholder="Password"
+          {...register("password")}
+        />
+
+        {errors.password && (
+          <p className="text-sm text-red-500">
+            {errors.password.message}
+          </p>
+        )}
+
+        <Button
+          type="submit"
+          className="w-full"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Logging in..." : "Login"}
+        </Button>
+
+      </form>
+
+    </div>
+
+  </div>
+);
 }
 
 export default Login;
