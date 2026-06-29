@@ -4,6 +4,7 @@ import cors from "cors";
 import authRoutes from "./routes/auth.routes.js";
 import quoteRoutes from "./routes/quote.routes.js";
 import projectRoutes from "./routes/project.routes.js";
+import contactRoutes from "./routes/contact.routes.js";
 
 const app = express();
 
@@ -20,5 +21,5 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/quotes", quoteRoutes);
 app.use("/api/projects", projectRoutes);
-
+app.use("/api/contact", contactRoutes);
 export default app;
