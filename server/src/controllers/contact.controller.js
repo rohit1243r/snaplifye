@@ -1,9 +1,21 @@
 import Contact from "../models/contact.model.js";
-
+import { sendUserEmail, sendAdminEmail } from "../services/email.service.js";
 // Create Contact
 export const createContact = async (req, res) => {
   try {
     const contact = await Contact.create(req.body);
+
+    try {
+      await sendUserEmail(contact);
+    } catch (emailError) {
+      console.warn("User email notification failed:", emailError.message);
+    }
+
+    try {
+      await sendAdminEmail(contact);
+    } catch (emailError) {
+      console.warn("Admin email notification failed:", emailError.message);
+    }
 
     res.status(201).json({
       success: true,
@@ -11,6 +23,7 @@ export const createContact = async (req, res) => {
       data: contact,
     });
   } catch (error) {
+    console.error("Contact submission failed:", error);
     res.status(500).json({
       success: false,
       message: error.message,
@@ -47,7 +60,7 @@ export const updateContactStatus = async (req, res) => {
     const contact = await Contact.findByIdAndUpdate(
       id,
       { status },
-      { new: true }
+      { new: true },
     );
 
     if (!contact) {

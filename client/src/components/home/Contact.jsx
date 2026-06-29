@@ -5,15 +5,37 @@ import {
   Clock,
   Send,
 } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { createContact } from "@/services/contact.service";
 
 function Contact() {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { isSubmitting },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    try {
+      await createContact(data);
+      toast.success("Message sent successfully 🚀");
+      reset();
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message ||
+        "Something went wrong"
+      );
+    }
+  };
+
   return (
     <section className="relative overflow-hidden bg-slate-950 py-16 sm:py-24">
-
       {/* Background Glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute left-6 top-10 h-56 w-56 rounded-full bg-cyan-500/10 blur-[120px] sm:left-20 sm:top-20 sm:h-72 sm:w-72" />
@@ -21,11 +43,11 @@ function Contact() {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6">
-
         {/* Hero */}
         <div className="mx-auto max-w-4xl text-center">
           <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-5 py-2 text-sm font-semibold text-cyan-400">
-            CONTACT SNAPLIFYE</span>
+            CONTACT SNAPLIFYE
+          </span>
           <h1 className="mt-8 text-3xl font-extrabold leading-tight sm:text-4xl md:text-5xl lg:text-7xl text-white">
             Let's Build Your
             <span className="block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
@@ -88,16 +110,21 @@ function Contact() {
             </p>
           </div>
 
-            <form className="space-y-6">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="space-y-6"
+          >
             <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
               <Input
                 placeholder="Full Name"
                 className="h-12 rounded-xl border-slate-700 bg-slate-950"
+                {...register("name")}
               />
               <Input
                 type="email"
                 placeholder="Email Address"
                 className="h-12 rounded-xl border-slate-700 bg-slate-950"
+                {...register("email")}
               />
             </div>
 
@@ -105,10 +132,12 @@ function Contact() {
               <Input
                 placeholder="Phone Number"
                 className="h-12 rounded-xl border-slate-700 bg-slate-950"
+                {...register("phone")}
               />
               <Input
-                placeholder="Business Name"
+                placeholder="Subject"
                 className="h-12 rounded-xl border-slate-700 bg-slate-950"
+                {...register("subject")}
               />
             </div>
 
@@ -116,23 +145,35 @@ function Contact() {
               rows={7}
               placeholder="Describe your project..."
               className="rounded-xl border-slate-700 bg-slate-950"
+              {...register("message")}
             />
 
             <Button
+              type="submit"
               size="lg"
-              className="h-14 w-full rounded-xl bg-cyan-500 text-lg font-semibold transition hover:scale-[1.02] hover:bg-cyan-600"
+              className="h-14 w-full rounded-xl bg-cyan-500 text-lg font-semibold transition hover:scale-[1.02] hover:bg-cyan-600 disabled:opacity-70 disabled:cursor-not-allowed"
+              disabled={isSubmitting}
             >
-              <Send className="mr-3 h-5 w-5" />
-              Send Project Request
+              {isSubmitting ? (
+                <>
+                  <span className="mr-3 h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  <Send className="mr-3 h-5 w-5" />
+                  Send Message
+                </>
+              )}
             </Button>
           </form>
         </div>
 
         {/* Why Choose Snaplifye */}
-          <div className="mt-24 rounded-[30px] border border-slate-800 bg-slate-900/60 p-12">
+        <div className="mt-24 rounded-[30px] border border-slate-800 bg-slate-900/60 p-12">
           <div className="text-center">
             <h2 className="text-4xl font-bold text-white">
-              Why Choose <img src="/images/logo.png" alt="Snaplifye" className="inline h-6 align-middle" />?
+              Why Choose <span className="text-cyan-400">Snaplifye</span>?
             </h2>
             <p className="mt-4 text-slate-400">
               We build websites that help businesses grow faster.
@@ -169,7 +210,6 @@ function Contact() {
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );
