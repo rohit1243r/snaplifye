@@ -1,7 +1,7 @@
 import { FaWhatsapp } from "react-icons/fa";
 
 function WhatsAppButton() {
-  const phone = "919876543210";
+  const phone = "918608969421";
   const message = encodeURIComponent(
     "Hello Snaplifye 👋 I want to build a website."
   );

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sparkles } from "lucide-react";
 import useQuoteDialog from "@/hooks/useQuoteDialog";
 import Logo from "./Logo";
 
@@ -45,8 +45,15 @@ function Navbar() {
 
                 {/* Desktop Button */}
                 <div className="hidden md:block">
-                    <Button onClick={open}>
-                        Get Free Quote
+                    <Button
+                        onClick={open}
+                        className="group relative overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-600 px-5 text-white shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-105 hover:shadow-cyan-500/40 active:scale-95"
+                    >
+                        <span className="relative z-10 flex items-center gap-2">
+                            <Sparkles className="size-4 transition-transform duration-300 group-hover:rotate-12" />
+                            Get Free Quote
+                        </span>
+                        <span className="absolute inset-0 -z-0 translate-y-full bg-gradient-to-r from-cyan-400 to-blue-500 transition-transform duration-300 group-hover:translate-y-0" />
                     </Button>
                 </div>
 
@@ -82,7 +89,11 @@ function Navbar() {
                             ))}
 
                             <div className="mt-4">
-                                <Button onClick={() => { setOpenMenu(false); open(); }} className="w-full">
+                                <Button
+                                    onClick={() => { setOpenMenu(false); open(); }}
+                                    className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-cyan-500/40 active:scale-95"
+                                >
+                                    <Sparkles className="mr-2 size-4" />
                                     Get Free Quote
                                 </Button>
                             </div>
