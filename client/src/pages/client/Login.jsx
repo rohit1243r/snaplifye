@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import Logo from "@/components/layout/Logo";
 import { useState } from "react";
 import GoogleLoginButton from "@/components/auth/GoogleLoginButton";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 
 const loginSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -20,16 +20,14 @@ const registerSchema = z
   .object({
     name: z
       .string()
-      .min(2, "Name must be at least 2 characters")
-      .regex(/^[a-zA-Z\s'-]+$/, "Name can only contain letters and spaces"),
+      .min(3, "Name must be at least 3 characters"),
     email: z.string().email("Please enter a valid email address"),
+    phone: z
+      .string()
+      .regex(/^\d{10}$/, "Mobile number must be exactly 10 digits"),
     password: z
       .string()
-      .min(8, "Password must be at least 8 characters")
-      .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
-      .regex(/[a-z]/, "Password must contain at least one lowercase letter")
-      .regex(/[0-9]/, "Password must contain at least one number")
-      .regex(/[!@#$%^&*(),.?":{}|<>]/, "Password must contain at least one special character"),
+      .min(8, "Password must be at least 8 characters"),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -69,19 +67,31 @@ function ClientLogin() {
         name: data.name,
         email: data.email,
         password: data.password,
+        phone: data.phone,
       });
       localStorage.setItem("clientToken", res.token);
       localStorage.setItem("client", JSON.stringify(res.client));
       toast.success("Registration Successful");
       navigate("/");
     } catch (error) {
-      toast.error(error.response?.data?.message || "Registration Failed");
+      const message = error.response?.data?.message || "Registration Failed";
+      toast.error(message);
+      if (error.response?.status === 409) {
+        registerForm.setError("root.serverError", { message });
+      }
     }
   };
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-950 px-6">
-      <div className="w-full max-w-md rounded-3xl border border-slate-800 bg-slate-900 p-8 shadow-2xl">
+      <div className="relative w-full max-w-md rounded-3xl border border-slate-800 bg-slate-900 p-8 shadow-2xl">
+        <button
+          type="button"
+          onClick={() => navigate("/")}
+          className="absolute left-6 top-6 rounded-xl border border-slate-800 bg-slate-950 p-2 text-slate-400 hover:text-white hover:border-slate-700 transition"
+        >
+          <ArrowLeft size={18} />
+        </button>
         <div className="mb-8 text-center">
           <div className="flex justify-center">
             <Logo />
@@ -171,11 +181,26 @@ function ClientLogin() {
             <div>
               <Input
                 type="email"
-                placeholder="Email"
+                placeholder="Email Address"
                 {...registerForm.register("email")}
               />
               {registerForm.formState.errors.email && (
                 <p className="mt-1 text-xs text-red-500">{registerForm.formState.errors.email.message}</p>
+              )}
+            </div>
+
+            <div>
+              <Input
+                type="tel"
+                placeholder="Mobile Number"
+                {...registerForm.register("phone")}
+                onChange={(e) => {
+                  const val = e.target.value.replace(/\D/g, "").slice(0, 10);
+                  registerForm.setValue("phone", val);
+                }}
+              />
+              {registerForm.formState.errors.phone && (
+                <p className="mt-1 text-xs text-red-500">{registerForm.formState.errors.phone.message}</p>
               )}
             </div>
 
@@ -221,30 +246,29 @@ function ClientLogin() {
               )}
             </div>
 
-            <div className="rounded-xl border border-slate-800 bg-slate-950/50 p-3">
-              <p className="mb-2 text-xs font-medium text-slate-400">Password requirements:</p>
-              <ul className="space-y-1 text-xs text-slate-500">
-                <li className={registerForm.watch("password")?.length >= 8 ? "text-emerald-400" : ""}>
-                  At least 8 characters
-                </li>
-                <li className={/[A-Z]/.test(registerForm.watch("password") || "") ? "text-emerald-400" : ""}>
-                  One uppercase letter
-                </li>
-                <li className={/[a-z]/.test(registerForm.watch("password") || "") ? "text-emerald-400" : ""}>
-                  One lowercase letter
-                </li>
-                <li className={/[0-9]/.test(registerForm.watch("password") || "") ? "text-emerald-400" : ""}>
-                  One number
-                </li>
-                <li className={/[!@#$%^&*(),.?":{}|<>]/.test(registerForm.watch("password") || "") ? "text-emerald-400" : ""}>
-                  One special character (!@#$%^&*)
-                </li>
-              </ul>
-            </div>
+            {registerForm.formState.errors.root?.serverError && (
+              <p className="text-center text-sm text-red-500">
+                {registerForm.formState.errors.root.serverError.message}
+              </p>
+            )}
 
             <Button type="submit" className="w-full" disabled={registerForm.formState.isSubmitting}>
-              {registerForm.formState.isSubmitting ? "Creating account..." : "Create Account"}
+              {registerForm.formState.isSubmitting ? "Creating account..." : "Register"}
             </Button>
+
+            <p className="text-center text-sm text-slate-400">
+              Already have an account?{" "}
+              <button
+                type="button"
+                onClick={() => {
+                  setMode("login");
+                  registerForm.reset();
+                }}
+                className="text-cyan-400 hover:text-cyan-300 transition"
+              >
+                Login
+              </button>
+            </p>
           </form>
         )}
 

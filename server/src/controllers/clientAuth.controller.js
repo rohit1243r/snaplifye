@@ -4,7 +4,7 @@ import { sanitize, validateRegisterInput } from "../utils/validate.js";
 
 export const register = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, phone } = req.body;
 
     const validationErrors = validateRegisterInput({ name, email, password });
     if (validationErrors) {
@@ -16,18 +16,29 @@ export const register = async (req, res) => {
 
     const normalizedEmail = email.toLowerCase().trim();
 
-    const exists = await Client.findOne({ email: normalizedEmail });
-    if (exists) {
+    const emailExists = await Client.findOne({ email: normalizedEmail });
+    if (emailExists) {
       return res.status(409).json({
         success: false,
-        message: "Email already registered.",
+        message: "User already exists. Please login.",
       });
+    }
+
+    if (phone) {
+      const phoneExists = await Client.findOne({ phone });
+      if (phoneExists) {
+        return res.status(409).json({
+          success: false,
+          message: "User already exists. Please login.",
+        });
+      }
     }
 
     const client = await Client.create({
       name: sanitize(name),
       email: normalizedEmail,
       password,
+      phone: phone || "",
     });
 
     const token = generateToken({ id: client._id, role: "client" });

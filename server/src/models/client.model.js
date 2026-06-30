@@ -23,6 +23,11 @@ const clientSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    role: {
+      type: String,
+      enum: ["client"],
+      default: "client",
+    },
     company: {
       type: String,
       default: "",
