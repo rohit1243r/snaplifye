@@ -30,6 +30,8 @@ import ClientMessages from "@/pages/client/Messages";
 import ClientInvoices from "@/pages/client/Invoices";
 import ClientFiles from "@/pages/client/Files";
 import ClientProfile from "@/pages/client/Profile";
+import FAQs from "@/pages/FAQs";
+import AdminFAQs from "@/pages/admin/FAQs";
 
 function AppRoutes() {
   return (
@@ -92,6 +94,15 @@ function AppRoutes() {
         />
 
         <Route
+          path="/faqs"
+          element={
+            <Layout>
+              <FAQs />
+            </Layout>
+          }
+        />
+
+        <Route
           path="/cost-estimator"
           element={
             <Layout>
@@ -140,6 +151,15 @@ function AppRoutes() {
           element={
             <ProtectedRoute>
               <ClientDetail />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/faqs"
+          element={
+            <ProtectedRoute>
+              <AdminFAQs />
             </ProtectedRoute>
           }
         />

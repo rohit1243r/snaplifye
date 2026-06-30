@@ -14,6 +14,7 @@ import clientAuthRoutes from "./routes/clientAuth.routes.js";
 import clientDashboardRoutes from "./routes/clientDashboard.routes.js";
 import clientMessageRoutes from "./routes/clientMessage.routes.js";
 import clientInvoiceRoutes from "./routes/clientInvoice.routes.js";
+import faqRoutes from "./routes/faq.routes.js";
 
 const app = express();
 
@@ -40,4 +41,5 @@ app.use("/api/client/auth", clientAuthRoutes);
 app.use("/api/client/dashboard", clientDashboardRoutes);
 app.use("/api/client/messages", clientMessageRoutes);
 app.use("/api/client/invoices", clientInvoiceRoutes);
+app.use("/api/faqs", faqRoutes);
 export default app;

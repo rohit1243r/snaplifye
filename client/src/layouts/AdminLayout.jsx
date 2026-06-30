@@ -4,6 +4,7 @@ import {
   FolderKanban,
   LogOut,
   Users,
+  HelpCircle,
 } from "lucide-react";
 import { Mail } from "lucide-react";
 
@@ -31,6 +32,11 @@ function AdminLayout({ children }) {
       title: "Contacts",
       path: "/admin/contacts",
       icon: <Mail size={20} />,
+    },
+    {
+      title: "FAQs",
+      path: "/admin/faqs",
+      icon: <HelpCircle size={20} />,
     },
   ];
 

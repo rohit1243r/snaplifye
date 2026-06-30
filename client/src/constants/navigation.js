@@ -20,6 +20,10 @@ export const navLinks = [
     path: "/about",
   },
   {
+    name: "FAQs",
+    path: "/faqs",
+  },
+  {
     name: "Contact",
     path: "/contact",
   },
