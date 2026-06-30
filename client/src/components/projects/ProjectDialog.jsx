@@ -36,6 +36,8 @@ function ProjectDialog({
         demoUrl: editingProject.demoUrl,
         githubUrl: editingProject.githubUrl,
         featured: editingProject.featured,
+        rating: editingProject.rating || 0,
+        ratingsCount: editingProject.ratingsCount || 0,
       });
     } else {
       reset({
@@ -47,6 +49,8 @@ function ProjectDialog({
         demoUrl: "",
         githubUrl: "",
         featured: false,
+        rating: 0,
+        ratingsCount: 0,
       });
     }
   }, [editingProject, reset]);
@@ -153,6 +157,38 @@ function ProjectDialog({
 
               <Input
                 {...register("githubUrl")}
+              />
+
+            </div>
+
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-2">
+
+            <div>
+
+              <Label>Rating (0-5)</Label>
+
+              <Input
+                type="number"
+                step="0.1"
+                min="0"
+                max="5"
+                {...register("rating")}
+                placeholder="4.5"
+              />
+
+            </div>
+
+            <div>
+
+              <Label>Ratings Count</Label>
+
+              <Input
+                type="number"
+                min="0"
+                {...register("ratingsCount")}
+                placeholder="10"
               />
 
             </div>

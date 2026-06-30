@@ -31,6 +31,9 @@ function ProjectsTable({ projects, onEdit, onDelete }) {
                 Category
               </th>
               <th className="px-6 py-4 text-left text-sm text-slate-400">
+                Rating
+              </th>
+              <th className="px-6 py-4 text-left text-sm text-slate-400">
                 Featured
               </th>
               <th className="px-6 py-4 text-left text-sm text-slate-400">
@@ -67,6 +70,15 @@ function ProjectsTable({ projects, onEdit, onDelete }) {
                 </td>
                 <td className="px-6 py-4 text-slate-300">
                   {project.category}
+                </td>
+                <td className="px-6 py-4">
+                  {project.rating > 0 ? (
+                    <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-400">
+                      ★ {project.rating.toFixed(1)}
+                    </span>
+                  ) : (
+                    <span className="text-sm text-slate-500">—</span>
+                  )}
                 </td>
                 <td className="px-6 py-4">
                   <span

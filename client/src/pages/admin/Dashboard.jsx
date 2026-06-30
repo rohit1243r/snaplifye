@@ -2,11 +2,19 @@ import AdminLayout from "@/layouts/AdminLayout";
 import StatsCard from "@/components/dashboard/StatsCard";
 import LeadsTable from "@/components/dashboard/LeadsTable";
 import LeadDetailsDialog from "@/components/dashboard/LeadDetailsDialog";
+import AnalyticsCards from "@/components/dashboard/AnalyticsCards";
+import LeadsTrendChart from "@/components/dashboard/LeadsTrendChart";
+import ContactRequestsChart from "@/components/dashboard/ContactRequestsChart";
+import ProjectCategoriesChart from "@/components/dashboard/ProjectCategoriesChart";
+import RecentActivity from "@/components/dashboard/RecentActivity";
+import LatestLeadsTable from "@/components/dashboard/LatestLeadsTable";
 import { getAllQuotes } from "@/services/quote.service";
+import { getAnalytics } from "@/services/analytics.service";
 import { exportToCSV } from "@/utils/exportCSV";
 import StatusChart from "@/components/dashboard/StatusChart";
 import MonthlyChart from "@/components/dashboard/MonthlyChart";
 import { useEffect, useMemo, useState } from "react";
+import { BarChart3, Activity } from "lucide-react";
 
 import {
     Users,
@@ -21,6 +29,7 @@ function Dashboard() {
     const [quotes, setQuotes] = useState([]);
     const [search, setSearch] = useState("");
     const [statusFilter, setStatusFilter] = useState("All");
+    const [analytics, setAnalytics] = useState(null);
 
     const [selectedLead, setSelectedLead] = useState(null);
     const [dialogOpen, setDialogOpen] = useState(false);
@@ -38,8 +47,18 @@ function Dashboard() {
         }
     };
 
+    const fetchAnalytics = async () => {
+        try {
+            const res = await getAnalytics();
+            setAnalytics(res.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     useEffect(() => {
         fetchQuotes();
+        fetchAnalytics();
     }, []);
 
     const filteredQuotes = useMemo(() => {
@@ -250,6 +269,34 @@ function Dashboard() {
                     onClose={() => setDialogOpen(false)}
                     quote={selectedLead}
                 />
+
+                {/* ---- Analytics Section ---- */}
+                <div className="mt-16 border-t border-slate-800 pt-12">
+                    <div className="mb-8 flex items-center gap-3">
+                        <BarChart3 className="size-6 text-cyan-400" />
+                        <h2 className="text-2xl font-bold text-white">Analytics Overview</h2>
+                    </div>
+
+                    <AnalyticsCards stats={analytics?.stats} />
+
+                    <div className="mt-8 grid gap-6 lg:grid-cols-2">
+                        <LeadsTrendChart
+                            daily={analytics?.leadsTrend || []}
+                            weekly={analytics?.weeklyLeads || []}
+                            monthly={analytics?.monthlyLeads || []}
+                        />
+                        <ContactRequestsChart data={analytics?.contactsByDate || []} />
+                    </div>
+
+                    <div className="mt-6 grid gap-6 lg:grid-cols-2">
+                        <ProjectCategoriesChart data={analytics?.projectCategories || []} />
+                        <RecentActivity activities={analytics?.recentActivity || []} />
+                    </div>
+
+                    <div className="mt-6">
+                        <LatestLeadsTable leads={analytics?.latestLeads || []} />
+                    </div>
+                </div>
 
             </div>
         </AdminLayout>

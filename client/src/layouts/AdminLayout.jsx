@@ -3,6 +3,7 @@ import {
   LayoutDashboard,
   FolderKanban,
   LogOut,
+  Users,
 } from "lucide-react";
 import { Mail } from "lucide-react";
 
@@ -20,6 +21,11 @@ function AdminLayout({ children }) {
       title: "Projects",
       path: "/admin/projects",
       icon: <FolderKanban size={20} />,
+    },
+    {
+      title: "Clients",
+      path: "/admin/clients",
+      icon: <Users size={20} />,
     },
     {
       title: "Contacts",

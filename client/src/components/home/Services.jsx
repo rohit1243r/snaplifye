@@ -5,7 +5,10 @@ import { services } from "../../data/services";
 
 function Services() {
   return (
-    <section className="bg-slate-950 py-24">
+    <section className="relative overflow-hidden bg-slate-950 py-24">
+      {/* Section Background Glow */}
+      <div className="absolute left-1/2 top-0 h-96 w-96 -translate-x-1/2 rounded-full bg-cyan-500/5 blur-[120px]" />
+
       <Container>
         <SectionTitle
           subtitle="Our Services"
@@ -14,8 +17,8 @@ function Services() {
         />
 
         <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => (
-            <ServiceCard key={service.id} service={service} />
+          {services.map((service, index) => (
+            <ServiceCard key={service.id} service={service} index={index} />
           ))}
         </div>
       </Container>

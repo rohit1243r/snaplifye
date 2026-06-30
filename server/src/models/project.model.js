@@ -44,6 +44,42 @@ const projectSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+
+    rating: {
+      type: Number,
+      default: 0,
+      min: 0,
+      max: 5,
+    },
+
+    ratingsCount: {
+      type: Number,
+      default: 0,
+    },
+
+    status: {
+      type: String,
+      enum: ["not-started", "in-progress", "completed", "on-hold", "cancelled"],
+      default: "not-started",
+    },
+
+    startDate: {
+      type: Date,
+    },
+
+    expectedDelivery: {
+      type: Date,
+    },
+
+    manager: {
+      type: String,
+      default: "",
+    },
+
+    assignedClient: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Client",
+    },
   },
   {
     timestamps: true,
